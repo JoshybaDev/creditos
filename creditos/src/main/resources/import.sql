@@ -1,12 +1,3 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/SQLTemplate.sql to edit this template
- */
-/**
- * Author:  Joshyba
- * Created: 19 oct 2024
- */
-
 INSERT INTO users(id,name,username,password,created_on,last_updated_on) VALUES(0,'JGomez','jgomez@javademo.com','$2a$12$sPt3w/C2QJT7VOGqT1V46uFyIapDlX.5bJ8wYaQnANjOsD7D5CHLa',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
 --$2a$12$sPt3w/C2QJT7VOGqT1V46uFyIapDlX.5bJ8wYaQnANjOsD7D5CHLa

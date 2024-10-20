@@ -1,5 +1,6 @@
 package com.joshybadev.apicredmx.creditos.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,9 +34,23 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    //Nombres
     private String name;
+    //Apellidos
     private String lastName;
+    //Nombre Comercial
+    private String tradeName;
+    //Fisica o Moral
+    @Column(length = 1)
+    private String type;
+    //RFC
     private String rfc;
+    //Correo
     private String email;
+    //Telefono
+    @Column(length = 10)
     private String phone;
+    //Activo o Inactivo
+    private Boolean active = true;
+
 }
