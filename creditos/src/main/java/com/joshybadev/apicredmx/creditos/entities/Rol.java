@@ -25,8 +25,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Table(name = "roles")
 public class Rol {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;    
+    private String name;
 }
