@@ -9,10 +9,8 @@ import com.joshybadev.apicredmx.creditos.controllers.dto.ResponseDTO;
 import com.joshybadev.apicredmx.creditos.entities.Customer;
 import com.joshybadev.apicredmx.creditos.service.ICustomerService;
 import java.net.URI;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -90,10 +88,10 @@ public class CustomerController {
                     || customerDTO.getRfc().isBlank()
                     || customerDTO.getEmail().isBlank()
                     || customerDTO.getPhone().isBlank()) {
-                return ResponseEntity.badRequest().body("Paramatros inválidos");
+                return ResponseEntity.badRequest().body("Parametros inválidos");
             }
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Paramatreos inválidos");
+            return ResponseEntity.badRequest().body("Parametros inválidos");
         }
 
         Customer customer = Customer.builder()
@@ -107,8 +105,8 @@ public class CustomerController {
                 .active(Boolean.TRUE)
                 .build();
 
-        Customer xcustomer = customerService.save(customer);
-        return ResponseEntity.created(URI.create("/customers/" + xcustomer.getId())).build();
+        Customer xCustomer = customerService.save(customer);
+        return ResponseEntity.created(URI.create("/customers/" + xCustomer.getId())).build();
     }
 
     @PutMapping("/{id}")

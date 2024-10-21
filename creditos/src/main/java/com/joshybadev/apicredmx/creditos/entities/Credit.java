@@ -1,6 +1,10 @@
 package com.joshybadev.apicredmx.creditos.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -48,15 +52,24 @@ public class Credit {
     private Instant autorizedOn;
     private Instant ministratedOn;
     private Instant cancelledOn;
+    //Creado Cancelado Autorizado Ministrado Pagado
+    @Column(length = 10)
     private String status;
     private Long mount;
     private Long percentej_inte;
+    //doble del interes crediticio
     private Long percentej_mora;
+    //Semanal Quincenal Mensual
+    @Column(length = 10)
     private String periodo;
     private Integer numcuotas;
-    private Integer plazomensual;
+    private Long plazomensual;
+    //Saldos Insolutos SI
+    @Column(length = 4)
+    private String calculoTipo;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
-    private Customer customer;  
+    private Customer customer;
 }

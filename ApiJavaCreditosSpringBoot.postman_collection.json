@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "e48862fe-54c6-4205-b3f7-ec1ed77fac39",
+		"name": "ApiJavaCreditosSpringBoot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "852437",
+		"_collection_link": "https://grey-capsule-912839.postman.co/workspace/pruebas-de-desarrollo~0ca35f5e-ede5-4462-96b3-24d07180a0ee/collection/852437-e48862fe-54c6-4205-b3f7-ec1ed77fac39?action=share&source=collection_link&creator=852437"
+	},
+	"item": [
+		{
+			"name": "/api/v1/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/v1/users",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/v1/customers",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/customers/count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/v1/customers/count",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/customers/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/v1/customers/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/customers/2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tradeName\":\"Pepsico S.A de C.V. de S.R.L.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/v1/customers/2",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/customers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Joshyba\",\r\n    \"lastName\":\"Corp\",\r\n    \"tradeName\":\"JoshybaCorp\",\r\n    \"type\":\"f\",\r\n    \"rfc\":\"josr875421gc9\",\r\n    \"email\":\"joshyacorp@gmail.com\",\r\n    \"phone\":\"9612386248\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/v1/customers",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/customers  2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Galletas\",\r\n    \"lastName\":\"Gamesa\",\r\n    \"tradeName\":\"Pepsico S.A de C.V.\",\r\n    \"type\":\"m\",\r\n    \"rfc\":\"pepsc875421gc9\",\r\n    \"email\":\"gamesa@gamesa.com\",\r\n    \"phone\":\"9612475216\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/v1/customers",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/customers/3",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Galletas\",\r\n    \"lastName\":\"Gamesa\",\r\n    \"tradeName\":\"Pepsico S.A de C.V.\",\r\n    \"type\":\"m\",\r\n    \"rfc\":\"pepsc875421gc9\",\r\n    \"email\":\"gamesa@gamesa.com\",\r\n    \"phone\":\"9612475216\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/v1/customers/3",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/credits/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/v1/credits",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"credits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/credits/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mount\":10000,\r\n    \"percentej_inte\":3,\r\n    \"percentej_mora\":6,\r\n    \"periodo\":\"Mensual\",\r\n    \"numcuotas\":12,\r\n    \"plazomensual\":12,\r\n    \"customer\":{\r\n        \"id\":1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/v1/credits",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"credits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/credits/autorizar/1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/v1/credits/autorizar/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"credits",
+						"autorizar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/credits/cancelar/1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/v1/credits/cancelar/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"credits",
+						"cancelar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/credits/ministrar/1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/v1/credits/ministrar/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"credits",
+						"ministrar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
