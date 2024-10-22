@@ -1,9 +1,9 @@
 #### Sistema para la administración de creditos individuales
 ### Backend
-- Desarrollador en Java con SpringBoot
+- Desarrollado en Java con SpringBoot
 
 ### Frontend
-- Desarrollador en Angular
+- Desarrollado en Angular
 
 ### Funcionalidades
 - Login con correo y contraseña
@@ -13,3 +13,4 @@
 - Alta de créditos
 - Autorizar y Cancelar Créditos
 - Ministrar Créditos
+- Listar Cuotas por credito_id

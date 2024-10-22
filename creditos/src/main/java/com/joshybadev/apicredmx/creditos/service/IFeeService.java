@@ -23,4 +23,6 @@ public interface IFeeService {
     void deleteById(Long id);
 
     long count();
+    
+    List<Fee> findByCredit_id(Long credit_id);
 }

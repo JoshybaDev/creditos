@@ -40,12 +40,12 @@ public class Fee {
     private Long id;
     private Integer numfee;
     private Instant datePay;
-    private Long capital;
-    private Long interest;
-    private Long vat;
-    private Long total;
-    private Long deposited;
-    private Long balance;
+    private float capital;
+    private float interest;
+    private float iva;
+    private float total;
+    private float deposited;
+    private float balance;
     private Boolean paid;
     
     @ManyToOne(fetch = FetchType.LAZY)

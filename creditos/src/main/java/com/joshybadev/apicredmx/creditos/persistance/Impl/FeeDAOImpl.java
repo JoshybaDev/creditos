@@ -44,7 +44,12 @@ public class FeeDAOImpl implements IFeeDAO {
 
     @Override
     public long count() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return feeRepository.count();
+    }
+
+    @Override
+    public List<Fee> findByCredit_id(Long credit_id) {
+        return feeRepository.findByCredit_id(credit_id);
     }
 
 }

@@ -47,4 +47,9 @@ public class FeeServiceImpl implements IFeeService {
         return feeDAO.count();
     }
 
+    @Override
+    public List<Fee> findByCredit_id(Long credit_id) {
+        return feeDAO.findByCredit_id(credit_id);
+    }
+
 }

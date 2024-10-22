@@ -5,6 +5,7 @@
 package com.joshybadev.apicredmx.creditos.repository;
 
 import com.joshybadev.apicredmx.creditos.entities.Fee;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IFeeRepository extends CrudRepository<Fee, Long> {
 
+    List<Fee> findByCredit_id(Long credit_id);
 }
