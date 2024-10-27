@@ -5,9 +5,6 @@
 
 package com.joshybadev.apicredmx.creditos.controllers.dto;
 
-import com.joshybadev.apicredmx.creditos.entities.Rol;
-import java.time.Instant;
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,11 +18,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDTO {
-    private Long id;
-    private String name;
+public class AuthRequestDTO {
+
     private String username;
-    private Set<Rol> roles;
-    private Instant createdOn;
-    private Instant lastUpdatedOn;
+    private String password;
 }

@@ -6,7 +6,6 @@
 package com.joshybadev.apicredmx.creditos.controllers.dto;
 
 import com.joshybadev.apicredmx.creditos.entities.Rol;
-import java.time.Instant;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,11 +20,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDTO {
-    private Long id;
+public class JwtResponseDTO {
+    private String accessToken;
     private String name;
-    private String username;
+    private String status;
+    private String msg;
+    private int code;
+    private String redirect;   
     private Set<Rol> roles;
-    private Instant createdOn;
-    private Instant lastUpdatedOn;
+  
 }
