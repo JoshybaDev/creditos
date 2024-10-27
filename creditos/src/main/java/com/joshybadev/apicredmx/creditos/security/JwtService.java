@@ -37,11 +37,12 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        return (Claims) Jwts
+        return Jwts
                 .parser()
-                .verifyWith(getSignKey())
+                .verifyWith(TokenJwtConfig.SECRET_KEY)
                 .build()
-                .parseEncryptedClaims(token);
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     private Boolean isTokenExpired(String token) {
@@ -68,16 +69,16 @@ public class JwtService {
                 .claims(claims)
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis()+10000*60*1))
+                .expiration(new Date(System.currentTimeMillis()+10000*60*60))
                 .issuedAt(new Date())
-                .signWith(getSignKey()).compact();
+                .signWith(TokenJwtConfig.SECRET_KEY).compact();
     }
 
 
-    private SecretKey getSignKey() {
-        SecretKey key = Jwts.SIG.HS256.key().build(); 
-        //Por si necesitamos validar el jwt token
-        //String secretString = Encoders.BASE64.encode(key.getEncoded());
-        return key;
-    } 
+//    private SecretKey getSignKey() {
+//        SecretKey key = Jwts.SIG.HS256.key().build(); 
+//        //Por si necesitamos validar el jwt token
+//        //String secretString = Encoders.BASE64.encode(key.getEncoded());
+//        return key;
+//    } 
 }

@@ -37,6 +37,7 @@ public class UserController {
                     .id(user.getId())
                     .name(user.getName())
                     .username(user.getUsername())
+                    .iperfil(user.getIperfil())
                     .createdOn(user.getCreatedOn())
                     .lastUpdatedOn(user.getLastUpdatedOn())
                     .roles(user.getRoles())
@@ -54,6 +55,7 @@ public class UserController {
                 .id(user.getId())
                 .name(user.getName())
                 .username(user.getUsername())
+                .iperfil(user.getIperfil())
                 .roles(user.getRoles())
                 .build()).toList();
         return ResponseEntity.ok(userList);

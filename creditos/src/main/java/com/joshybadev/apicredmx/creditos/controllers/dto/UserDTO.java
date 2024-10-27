@@ -25,7 +25,13 @@ public class UserDTO {
     private Long id;
     private String name;
     private String username;
+    private String passwordA;
+    //@JsonIgnore
+    private String password;
+    //@JsonIgnore
+    private String password2;
+    private String iperfil;
+    private Instant  createdOn;
+    private Instant  lastUpdatedOn;
     private Set<Rol> roles;
-    private Instant createdOn;
-    private Instant lastUpdatedOn;
 }

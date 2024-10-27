@@ -1,0 +1,124 @@
+<div class="d-sm-flex align-content-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Nuevo Usuario</h1>
+</div>
+<form [formGroup]="formUserNew" (ngSubmit)="onSubmit(formUserNew)">
+    <div class="col-lg-12" *ngIf="esValido">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Faltan datos por capturar
+            <button class="btn-close" type="button" data-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card shadow-lg">
+                <div class="card-header text-primary">Foto de Usuario</div>
+                <div class="card-body text-center">
+                    <img [src]="ImgPerfilCheck" id="srcImgPerfil" style="display: none;" (load)="RevisarTamano($event)" alt="perfil">
+                    <img class="img-account-profile rounded-circle mb-2" [src]="srcImgPerfil" alt="" height="284px"
+                        width="284px">
+                    <div class="small font-italic text-muted mb-4">JPG or PNG maximo 256px</div>
+                    <label for="iperfil">
+                        <a class="btn btn-primary" type="button">Elegir foto</a>
+                        <input type="file" name="iperfil" id="iperfil" style="display: none;"
+                            formControlName="imgControl" (change)="SeleccionarImg($event)" accept="image/jpeg, image/jpg, image/png">
+                    </label>
+                    <div class="col-lg-12" *ngIf="imgTamano">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Imagen excede los 256px de alto y ancho.
+                            <button class="btn-close" type="button" data-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{formUserNew.valid}} {{imgTamano}}
+        </div>
+        <div class="col-lg-8 ">
+            <div class="card shadow-lg">
+                <div class="card-header text-primary">Detalle de Usuario</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label for="email">Correo electronico:</label>
+                            <input type="text" name="email" id="email" class="form-control" formControlName="email">
+                            <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    El email es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-12">
+                            <label for="name">Nombre:</label>
+                            <input type="text" name="name" id="name" class="form-control" formControlName="name">
+                            <div
+                                *ngIf="formUserNew.get('name')?.invalid && (formUserNew.get('name')?.dirty || formUserNew.get('name')?.touched)">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    El nombre es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-12">
+                            <label for="ubicacionmodal"
+                                class="my-0 mr-2 font-bold col-auto lg:col-3 text-overflow-clip">
+                                Rol:
+                            </label>
+
+                            <p-dropdown inputId="ubicacionmodal" [options]="roles" optionLabel="name" optionValue="name"
+                                placeholder="Seleccionar Rol" [virtualScroll]="true" [virtualScrollItemSize]="38"
+                                [style]="{ minWidth: '100%',height:'38px' }" formControlName="rol"
+                                emptyMessage="No se encontraron ubicaciones"></p-dropdown>
+                                <div *ngIf="formUserNew.get('rol')?.invalid && (formUserNew.get('rol')?.dirty || formUserNew.get('rol')?.touched)">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        El rol es obligatorio
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-12">
+                            <label for="password">Contraseña:</label>
+                            <input type="password" name="password" id="password" class="form-control" name="password"
+                                formControlName="password">
+                                <div *ngIf="formUserNew.get('password')?.invalid && (formUserNew.get('password')?.dirty || formUserNew.get('password')?.touched)">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        La contraseña es obligatorio, minimo 6 caracteres.
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-12">
+                            <label for="password2">Confirmar Contraseña:</label>
+                            <input type="password" name="password" id="password2" class="form-control" name="password2"
+                                formControlName="password2">
+                                <div *ngIf="formUserNew.get('password2')?.invalid && (formUserNew.get('password2')?.dirty || formUserNew.get('password2')?.touched)">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        La contraseña es obligatorio, minimo 6 caracteres.
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <button class="btn btn-primary">Crear Usuario</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
