@@ -23,9 +23,6 @@ export class UsersEditComponent implements OnInit {
     private router: Router,
     private sanitizer: DomSanitizer,
     private _route: ActivatedRoute) {
-    //this.urlTree = this.router.parseUrl(this.router.url);
-    //console.log(this.urlTree);
-    //this.id = this.urlTree.queryParams['id'];
     this.id = parseInt(this._route.snapshot.paramMap.get('id') ?? '0');
   }
 

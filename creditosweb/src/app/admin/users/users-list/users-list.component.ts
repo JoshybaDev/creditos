@@ -16,7 +16,8 @@ import { UserDelModalComponent } from '../../../shared/modals/user-del-modal/use
 })
 export class UsersListComponent implements OnInit{
   public users:User[]=[];
-  constructor(private usersService:UsersService){}
+  constructor(private usersService:UsersService){
+  }
   
   ngOnInit(): void {
     this.usersService.getUsers().subscribe(users => this.users = users);

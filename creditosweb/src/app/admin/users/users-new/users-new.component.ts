@@ -23,7 +23,9 @@ export class UsersNewComponent implements OnInit {
     private usersService: UsersService,
     private rolesService: RolesService,
     private router: Router,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer) {
+      
+     }
 
   ngOnInit(): void {
     this.rolesService.getRoles().subscribe(roles => this.roles = roles);

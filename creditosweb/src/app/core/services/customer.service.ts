@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { enviroments } from '../../enviroments/environments';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErroresService } from './errores.service';
-import { Rol } from '../interfaces/roles.interface';
+import { Customers } from '../interfaces/customers.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RolesService {
+export class CustomerService {
   private readonly baseUrl: string = enviroments.baseUrl;
   constructor(private readonly http: HttpClient, private readonly erroresService: ErroresService) { }
   headers = {
@@ -21,7 +21,7 @@ export class RolesService {
     headers: new HttpHeaders(this.headers)
   };
 
-  getRoles(): Observable<Rol[]> {
-    return this.http.get<Rol[]>(`${this.baseUrl}/roles`, this.httpOptions);
+  getCustomers(): Observable<Customers[]> {
+    return this.http.get<Customers[]>(`${this.baseUrl}/customers`, this.httpOptions);
   }
 }

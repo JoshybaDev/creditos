@@ -33,5 +33,4 @@ public class CreditDTO {
     private String periodo;
     private Integer numcuotas;
     private Long plazomensual;
-    private Customer customer;  
 }

@@ -12,7 +12,7 @@ export interface LoginResponse{
 }
 
 
-export interface loginRequest{
+export interface LoginRequest{
     username:string;
     password:string;
 }

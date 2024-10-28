@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { LoginResponse } from '../../core/interfaces/login.interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NgIf } from '@angular/common';
-import { json } from 'stream/consumers';
 
 @Component({
   selector: 'app-login',
@@ -46,7 +45,6 @@ export class LoginComponent {
             sessionStorage.setItem('token', response.accessToken);
             sessionStorage.setItem('name', response.name);
             sessionStorage.setItem('roles', JSON.stringify(response.roles));
-            console.log("lOGIN=========>",response.roles);
             sessionStorage.setItem('iperfil', response.iperfil);
             this.router.navigate([response.redirect]);
           }
@@ -56,6 +54,10 @@ export class LoginComponent {
             this.mensajeShowStatus = true
             this.mensajeShowData = this.mensajeSuccesError(error.error.msg, false);
             setTimeout(() => { this.mensajeShowStatus = false }, 3000);
+          }else{
+            this.mensajeShowStatus = true
+            this.mensajeShowData = this.mensajeSuccesError("Error de Servidor", false);
+            setTimeout(() => { this.mensajeShowStatus = false }, 3000);            
           }
         }
       });
