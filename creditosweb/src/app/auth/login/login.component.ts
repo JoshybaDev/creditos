@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginResponse } from '../../core/interfaces/login.interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NgIf } from '@angular/common';
+import { json } from 'stream/consumers';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +45,8 @@ export class LoginComponent {
           if (response.code == 200) {
             sessionStorage.setItem('token', response.accessToken);
             sessionStorage.setItem('name', response.name);
-            sessionStorage.setItem('rol', response.rol);
+            sessionStorage.setItem('roles', JSON.stringify(response.roles));
+            console.log("lOGIN=========>",response.roles);
             sessionStorage.setItem('iperfil', response.iperfil);
             this.router.navigate([response.redirect]);
           }

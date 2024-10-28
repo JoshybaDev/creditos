@@ -175,6 +175,7 @@ public class CreditController {
             creditService.save(credit);
 
             //Actualizar las fechas de las cuotas de acuerdo a la fecha de ministracion
+            //Logica de actualizacion
             return ResponseEntity.ok(
                     ResponseDTO.builder()
                             .msg("Credito Ministrado correctamente")

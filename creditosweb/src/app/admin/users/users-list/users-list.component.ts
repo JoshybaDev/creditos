@@ -31,6 +31,13 @@ export class UsersListComponent implements OnInit{
   }
 
   public getEsAdmin(){
-    return sessionStorage.getItem('rol')=="ADMIN"
+    let xEsAdmin = false;
+    let roles = JSON.parse(sessionStorage.getItem('roles'));
+    roles.forEach(element => {
+      if(element.name=='ADMIN'){
+        xEsAdmin=true;
+      }
+    });
+    return xEsAdmin;
   }
 }

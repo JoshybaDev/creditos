@@ -47,7 +47,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests((request) -> request
                 .requestMatchers("/api/v1/auth/login").permitAll()
-                .requestMatchers("/api/v1/**").permitAll()
+                //.requestMatchers("/api/v1/**").permitAll()
                 .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(authenticationProvider())
