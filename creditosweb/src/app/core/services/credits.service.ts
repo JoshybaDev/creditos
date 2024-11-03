@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { enviroments } from '../../enviroments/environments';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErroresService } from './errores.service';
-import { Credits } from '../interfaces/credits.interface';
+import { Credits } from '../interfaces/credit.interface';
 import { Observable } from 'rxjs';
 
 

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { Router } from '@angular/router';
 import { LoginResponse } from '../../core/interfaces/login.interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +13,19 @@ import { NgIf } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private sanitizer: DomSanitizer
+  constructor(private readonly formBuilder: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly sanitizer: DomSanitizer,
+    private readonly router: Router
   ) { }
+
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(["dashboard"]);
+    }
+  }
 
   public mensajeShowStatus: boolean = false;
   public mensajeShowData: SafeHtml = "";
@@ -41,23 +47,17 @@ export class LoginComponent {
         password: this.formlogin.get('password')?.value?.toString() ?? '',
       }).subscribe({
         next: (response: LoginResponse) => {
-          if (response.code == 200) {
-            sessionStorage.setItem('token', response.accessToken);
-            sessionStorage.setItem('name', response.name);
-            sessionStorage.setItem('roles', JSON.stringify(response.roles));
-            sessionStorage.setItem('iperfil', response.iperfil);
-            this.router.navigate([response.redirect]);
-          }
+          this.authService.createSession(response);
         },
         error: (error) => {
-          if(error.status==400) {
+          if (error.status == 400) {
             this.mensajeShowStatus = true
             this.mensajeShowData = this.mensajeSuccesError(error.error.msg, false);
             setTimeout(() => { this.mensajeShowStatus = false }, 3000);
-          }else{
+          } else {
             this.mensajeShowStatus = true
             this.mensajeShowData = this.mensajeSuccesError("Error de Servidor", false);
-            setTimeout(() => { this.mensajeShowStatus = false }, 3000);            
+            setTimeout(() => { this.mensajeShowStatus = false }, 3000);
           }
         }
       });
@@ -103,7 +103,6 @@ export class LoginComponent {
     if (errorsList.includes('email')) {
       return 'No tiene formato de correo.';
     }
-
     return "";
   }
 

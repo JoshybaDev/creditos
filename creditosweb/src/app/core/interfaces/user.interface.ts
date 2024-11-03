@@ -1,4 +1,4 @@
-import { Rol } from "./roles.interface";
+import { Rol } from "./role.interface";
 
 export interface User{
     id?: number;
@@ -10,7 +10,7 @@ export interface User{
     iperfil?:string;
     createdOn?:string;
     lastUpdatedOn?:string;
-    roles:Rol[];
+    roles?:Rol[];
 }
 
 export interface UserResponse{

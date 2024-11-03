@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import { NofondpublicComponent } from './shared/pages/nofondpublic/nofondpublic.component';
-import { loggedGuard } from './core/guards/logged.guard';
+
+import { NofondpublicComponent } from '@shared/pages/nofondpublic/nofondpublic.component';
+import { AuthGuard } from '@guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -10,7 +11,7 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         loadChildren: () => import('./admin/dashboard.routes').then(m => m.DASH_ROUTES),
-        canActivate: [loggedGuard]
+        canActivate: [AuthGuard]
     },
     {
         path: '**',

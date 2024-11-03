@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { enviroments } from "../../enviroments/environments";
 import { Observable, catchError, of, map } from "rxjs";
-import { User, UserResponse } from "../interfaces/users.interface";
+import { User, UserResponse } from "../interfaces/user.interface";
 import { Injectable } from "@angular/core";
 import { ErroresService } from "./errores.service";
 

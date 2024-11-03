@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { enviroments } from '../../enviroments/environments';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ErroresService } from './errores.service';
-import { Customers } from '../interfaces/customers.interface';
 import { Observable } from 'rxjs';
+
+import { ErroresService } from './errores.service';
+import { Customer } from '@interfaces/customer.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class CustomersService {
   private readonly baseUrl: string = enviroments.baseUrl;
   constructor(private readonly http: HttpClient, private readonly erroresService: ErroresService) { }
   headers = {
@@ -21,7 +22,7 @@ export class CustomerService {
     headers: new HttpHeaders(this.headers)
   };
 
-  getCustomers(): Observable<Customers[]> {
-    return this.http.get<Customers[]>(`${this.baseUrl}/customers`, this.httpOptions);
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.baseUrl}/customers`, this.httpOptions);
   }
 }

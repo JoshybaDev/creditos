@@ -1,18 +1,18 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
-import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { UsersService } from '../../../core/services/users.service';
 import { RolesService } from '../../../core/services/roles.service';
 import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
-import { User, UserResponse } from '../../../core/interfaces/users.interface';
-import { Rol } from '../../../core/interfaces/roles.interface';
+import { User, UserResponse } from '../../../core/interfaces/user.interface';
+import { Rol } from '../../../core/interfaces/role.interface';
 
 @Component({
   selector: 'app-users-edit',
   standalone: true,
-  imports: [ReactiveFormsModule, DropdownModule, NgIf],
+  imports: [ReactiveFormsModule, MultiSelectModule, NgIf],
   templateUrl: './users-edit.component.html',
   styleUrl: './users-edit.component.css'
 })
@@ -35,7 +35,7 @@ export class UsersEditComponent implements OnInit {
         this.formUserUpdateData.setValue({
           email: this.user?.username ?? "",
           name: this.user?.name ?? "",
-          rol: this.user?.rol ?? "",
+          roles: this.user?.roles ?? this.roles,
         });
         this.srcImgPerfil = this.updateImageSrcPerfil((this.user?.iperfil == null || this.user?.iperfil == '') ? this.srcImgBase : this.user?.iperfil);
       });
@@ -64,7 +64,7 @@ export class UsersEditComponent implements OnInit {
   formUserUpdateData = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     name: ['', [Validators.required]],
-    rol: ['', [Validators.required]]
+    roles: [this.formBuilder.array<Rol>([]), [Validators.required]]
   });
 
   formUserUpdatePass = this.formBuilder.group({
@@ -100,7 +100,7 @@ export class UsersEditComponent implements OnInit {
       this.usersService.setUserUpdateData({
         id: this.id,
         name: this.formUserUpdateData.get('name').value || '',
-        rol: this.formUserUpdateData.get('rol').value || ''
+        roles: this.formUserUpdateData.get('roles').value || []
       }).subscribe({
         next: (response: UserResponse) => {
           this.mensajeShowStatus = true

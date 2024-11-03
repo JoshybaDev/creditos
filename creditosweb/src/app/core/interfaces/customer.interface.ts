@@ -1,4 +1,4 @@
-export interface Customers{
+export interface Customer{
     id?: number;
     name?:string;
     lastName?:string;
@@ -7,7 +7,7 @@ export interface Customers{
     rfc?:string;
     email?:string;
     phone?:string;
-    //createdOn?:string;
+    createdOn?:string;
     //lastUpdatedOn?:string;
     active?:string;
 }

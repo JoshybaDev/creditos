@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { enviroments } from '../../enviroments/environments';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErroresService } from './errores.service';
-import { Rol } from '../interfaces/roles.interface';
+import { Rol } from '../interfaces/role.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({

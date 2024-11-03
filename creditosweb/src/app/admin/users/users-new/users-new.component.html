@@ -66,11 +66,16 @@
                                 class="my-0 mr-2 font-bold col-auto lg:col-3 text-overflow-clip">
                                 Rol:
                             </label>
-
-                            <p-dropdown inputId="ubicacionmodal" [options]="roles" optionLabel="name" optionValue="name"
-                                placeholder="Seleccionar Rol" [virtualScroll]="true" [virtualScrollItemSize]="38"
-                                [style]="{ minWidth: '100%',height:'38px' }" formControlName="rol"
-                                emptyMessage="No se encontraron ubicaciones"></p-dropdown>
+                            <p-multiSelect 
+                            [options]="roles"  
+                            optionLabel="name" 
+                            optionValue="id"
+                            placeholder="Seleccionar Rol(es)" 
+                            [style]="{ minWidth: '100%',height:'38px' }" 
+                            formControlName="roles"
+                            emptyMessage="No se encontraron ubicaciones"
+                            [virtualScroll]="true"
+                            [virtualScrollItemSize]="38"/>
                                 <div *ngIf="formUserNew.get('rol')?.invalid && (formUserNew.get('rol')?.dirty || formUserNew.get('rol')?.touched)">
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         El rol es obligatorio

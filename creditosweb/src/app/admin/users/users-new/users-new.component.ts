@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
-import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-import { UserResponse } from '../../../core/interfaces/users.interface';
-import { Rol } from '../../../core/interfaces/roles.interface';
+import { UserResponse } from '../../../core/interfaces/user.interface';
+import { Rol } from '../../../core/interfaces/role.interface';
 import { RolesService } from '../../../core/services/roles.service';
 import { UsersService } from '../../../core/services/users.service';
 
@@ -14,7 +14,7 @@ import { UsersService } from '../../../core/services/users.service';
 @Component({
   selector: 'app-users-new',
   standalone: true,
-  imports: [ReactiveFormsModule, DropdownModule, NgIf],
+  imports: [ReactiveFormsModule, MultiSelectModule, NgIf],
   templateUrl: './users-new.component.html',
   styleUrl: './users-new.component.css'
 })
@@ -44,7 +44,7 @@ export class UsersNewComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(6)]],
     password2: ['', [Validators.required, Validators.minLength(6)]],
     imgControl: ['', [Validators.required]],
-    rol: ['', [Validators.required]]
+    roles: [[], [Validators.required]]
   });
 
   get email() {
@@ -63,7 +63,7 @@ export class UsersNewComponent implements OnInit {
         password: this.formUserNew.get('password').value.toString() || '',
         password2: this.formUserNew.get('password2').value.toString() || '',
         iperfil: this.iperfil,
-        rol: this.formUserNew.get('rol').value || ''
+        roles: this.formUserNew.get('roles').value || []
       }).subscribe({
         next: (response: UserResponse) => {
           this.router.navigate([response.msg]);

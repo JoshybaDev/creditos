@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UsersService } from '../../../core/services/users.service';
-import { UserResponse } from '../../../core/interfaces/users.interface';
+
+import { UsersService } from '@services/users.service';
+import { UserResponse } from '@interfaces/user.interface';
 
 @Component({
   selector: 'app-user-del-modal',

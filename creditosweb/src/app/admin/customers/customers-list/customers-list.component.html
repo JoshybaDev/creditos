@@ -1,7 +1,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
+    <h1 class="h3 mb-0 text-gray-800">Clientes</h1>
     <div *ngIf="getEsAdmin()">
-        <a [routerLink]="['/dashboard/users/new']" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+        <a [routerLink]="['/dashboard/customers/new']" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
                 class="fas fa-user fa-sm text-white-50"></i> Nuevo</a>
     </div>
 </div>
@@ -14,22 +14,18 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Email</th>
-                        <th>Foto</th>
                         <th>Creado</th>
-                        <th>Rol</th>
                         <th *ngIf="getEsAdmin()">Opciones</th>
                     </tr>
-                    <tr *ngFor="let user of users">
-                        <td>{{user.name}}</td>
-                        <td>{{user.username}}</td>
-                        <td><img src="{{user.iperfil}}" height="64px" class="img-profile rounded-circle" alt="perfil"></td>
-                        <td>{{user.createdOn}}</td>
-                        <td>{{user.roles}}</td>
+                    <tr *ngFor="let customer of customers">
+                        <td>{{ customer.tradeName ?? customer.name}}</td>
+                        <td>{{customer.email}}</td>
+                        <td>{{customer.createdOn}}</td>
                         <td *ngIf="getEsAdmin()">
-                            <a class="btn btn-warning btn-circle" [routerLink]="['/dashboard/users/edit',user.id]"><i
+                            <a class="btn btn-warning btn-circle" [routerLink]="['/dashboard/customers/edit',customer.id]"><i
                                     class="fas fa-edit "></i></a>
                             <a class="btn btn-danger btn-circle" href="#" data-toggle="modal"
-                                data-target="#ModalDelUser" (click)="SetSelectemItem(user.id,user.name)">
+                                data-target="#ModalDelCustomer" (click)="SetSelectemItem(customer.id,customer.tradeName ?? customer.name)">
                                 <i class="fas fa-trash"></i>
                             </a>
 
@@ -42,4 +38,4 @@
         </div>
     </div>
 </div>
-<app-user-del-modal [id]="idSelected" [user]="nombreSelected"></app-user-del-modal>
+<app-customer-del-modal [id]="idSelected" [customer]="nombreSelected"></app-customer-del-modal>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../core/interfaces/users.interface';
-import { UsersService } from '../../../core/services/users.service';
 import {NgFor, NgIf} from '@angular/common';
-import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { UserDelModalComponent } from '../../../shared/modals/user-del-modal/user-del-modal.component';
+
+import { UserDelModalComponent } from '@modals/user-del-modal/user-del-modal.component';
+import { AuthService } from '@services/auth.service';
+import { UsersService } from '@services/users.service';
+import { User } from '@interfaces/user.interface';
+
 
 
 @Component({
@@ -16,7 +18,7 @@ import { UserDelModalComponent } from '../../../shared/modals/user-del-modal/use
 })
 export class UsersListComponent implements OnInit{
   public users:User[]=[];
-  constructor(private usersService:UsersService){
+  constructor(private usersService:UsersService,private authSetvice:AuthService){
   }
   
   ngOnInit(): void {
@@ -31,14 +33,7 @@ export class UsersListComponent implements OnInit{
     this.nombreSelected=name;
   }
 
-  public getEsAdmin(){
-    let xEsAdmin = false;
-    let roles = JSON.parse(sessionStorage.getItem('roles'));
-    roles.forEach(element => {
-      if(element.name=='ADMIN'){
-        xEsAdmin=true;
-      }
-    });
-    return xEsAdmin;
-  }
+  getEsAdmin(){
+    return this.authSetvice.getEsAdmin();
+  }  
 }
