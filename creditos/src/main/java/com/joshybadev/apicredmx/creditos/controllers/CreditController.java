@@ -93,8 +93,7 @@ public class CreditController {
                     || creditDTO.getPercentej_mora() < 0
                     || creditDTO.getPeriodo().isBlank()
                     || creditDTO.getNumcuotas() <= 0
-                    || creditDTO.getPlazomensual() <= 0
-                    || creditDTO.getCustomer() == null) {
+                    || creditDTO.getPlazomensual() <= 0) {
                 return ResponseEntity.badRequest().body(ResponseDTO.builder()
                         .msg("Paramatros inválidos")
                         .code(400)
@@ -124,7 +123,7 @@ public class CreditController {
                 .plazomensual(creditDTO.getPlazomensual())
                 .calculoTipo("SI")
                 .status("Creado")
-                .customer(creditDTO.getCustomer())
+                //.customer(creditDTO.getCustomer())
                 .build();
 
         Credit xCredit = creditService.save(credit);
