@@ -1,4 +1,6 @@
 import { Routes } from "@angular/router";
+
+
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UsersListComponent } from "./users/users-list/users-list.component";
@@ -7,6 +9,7 @@ import { UsersEditComponent } from "./users/users-edit/users-edit.component";
 import { CustomersListComponent } from "./customers/customers-list/customers-list.component";
 import { CustomersNewComponent } from "./customers/customers-new/customers-new.component";
 import { CustomersEditComponent } from "./customers/customers-edit/customers-edit.component";
+import { CreditsListComponent } from "./credits/credits-list/credits-list.component";
 
 export const DASH_ROUTES: Routes = [
     {
@@ -17,7 +20,8 @@ export const DASH_ROUTES: Routes = [
             { path: 'users/edit/:id', component: UsersEditComponent  },
             { path: 'customers', component: CustomersListComponent  },
             { path: 'customers/new', component: CustomersNewComponent  },
-            { path: 'customers/edit/:id', component: CustomersEditComponent  },             
+            { path: 'customers/edit/:id', component: CustomersEditComponent  },    
+            { path: 'credits', component: CreditsListComponent  },         
         ]
     }
 ]

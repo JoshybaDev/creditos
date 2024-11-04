@@ -5,10 +5,10 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-import { UserResponse } from '../../../core/interfaces/user.interface';
-import { Rol } from '../../../core/interfaces/role.interface';
-import { RolesService } from '../../../core/services/roles.service';
-import { UsersService } from '../../../core/services/users.service';
+import { Response } from '@interfaces/response.interface';
+import { Rol } from '@interfaces/rol.interface';
+import { RolesService } from '@services/roles.service';
+import { UsersService } from '@services/users.service';
 
 
 @Component({
@@ -19,11 +19,11 @@ import { UsersService } from '../../../core/services/users.service';
   styleUrl: './users-new.component.css'
 })
 export class UsersNewComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder,
-    private usersService: UsersService,
-    private rolesService: RolesService,
-    private router: Router,
-    private sanitizer: DomSanitizer) {
+  constructor(private readonly formBuilder: FormBuilder,
+    private readonly usersService: UsersService,
+    private readonly rolesService: RolesService,
+    private readonly router: Router,
+    private readonly sanitizer: DomSanitizer) {
       
      }
 
@@ -34,9 +34,9 @@ export class UsersNewComponent implements OnInit {
   public srcImgPerfil: SafeResourceUrl = this.srcImgBase;
   public ImgPerfilCheck: SafeResourceUrl;
   public iperfil: string
-  public roles: Rol[]
-  public esValido: Boolean = false;
-  public imgTamano: Boolean = false
+  public roles: Rol[]=[]
+  public esValido: boolean = false;
+  public imgTamano: boolean = false
 
   formUserNew = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -44,29 +44,38 @@ export class UsersNewComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(6)]],
     password2: ['', [Validators.required, Validators.minLength(6)]],
     imgControl: ['', [Validators.required]],
-    roles: [[], [Validators.required]]
+    roles: [this.roles, [Validators.required]]
   });
 
   get email() {
     return this.formUserNew.get('email');
   }
 
+  getRolesGenerate(roles){
+    let xroles:Rol[]=[];
+    let _rol: Rol;
+    roles.forEach(element => {
+      let _rol = {id: element.id}
+      xroles.push(_rol);
+    });
+    return xroles;
+  }
+
   // OnSubmit
   onSubmit(form: FormGroup) {
-    if (form.valid && this.imgTamano==false) {
+    if (form.valid && !this.imgTamano) {
       this.esValido = false;
       // TODO: Use EventEmitter with form value
-      //console.warn("Data ====> ", this.formUserNew.value);
       this.usersService.setUsersSave({
         name: this.formUserNew.get('name').value.toString() || '',
         username: this.formUserNew.get('email').value.toString() || '',
         password: this.formUserNew.get('password').value.toString() || '',
         password2: this.formUserNew.get('password2').value.toString() || '',
         iperfil: this.iperfil,
-        roles: this.formUserNew.get('roles').value || []
+        roles: this.getRolesGenerate(this.formUserNew.get('roles').value ?? [])
       }).subscribe({
-        next: (response: UserResponse) => {
-          this.router.navigate([response.msg]);
+        next: (response: Response) => {
+          this.router.navigate([response.redirect]);
         },
         error: (error) => {
           console.log("Error ====> ", error);
@@ -78,20 +87,20 @@ export class UsersNewComponent implements OnInit {
   }
 
   //Revision de la imagen
-  updateImageSrcPerfil(img) {
+  updateImageSrcPerfil(img:string) {
     this.iperfil = img;
     return  this.sanitizer.bypassSecurityTrustResourceUrl(`${img}`);
   }
 
-  CreateBase64(file) {
+  CreateBase64(file:Blob) {
     return new Promise(resolve => Object.assign(new FileReader(), { onload() { resolve(this.result) } }).readAsDataURL(file));
   }
 
   SeleccionarImg(event) {
     const file: File = event.target.files[0];
     this.CreateBase64(file)
-      .then(x => {
-        this.srcImgPerfil = this.updateImageSrcPerfil(x);
+      .then((img:string) => {
+        this.srcImgPerfil = this.updateImageSrcPerfil(img);
         this.ImgPerfilCheck = this.srcImgPerfil;
       })
       .catch(error => console.log(error));

@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+
 import { UsersService } from '@services/users.service';
-import { UserResponse } from '@interfaces/user.interface';
+import { Response } from '@interfaces/response.interface';
 
 @Component({
   selector: 'app-user-del-modal',
@@ -20,7 +21,7 @@ export class UserDelModalComponent {
   EliminarUsuarioYa() {
     this.usersService.setUserDeleteById(this.id)
       .subscribe({
-        next: (response: UserResponse) => {
+        next: (response: Response) => {
           if (response.code == 200)
             window.location.reload();
         },

@@ -20,6 +20,7 @@ export class AuthService {
     }
     createSession(resposeData) {
         if (resposeData.code == 200) {
+            sessionStorage.clear();
             sessionStorage.setItem('token', resposeData.accessToken);
             sessionStorage.setItem('name', resposeData.name);
             sessionStorage.setItem('roles', JSON.stringify(resposeData.roles));

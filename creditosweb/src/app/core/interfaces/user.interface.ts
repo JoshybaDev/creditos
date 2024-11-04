@@ -1,4 +1,4 @@
-import { Rol } from "./role.interface";
+import { Rol } from "./rol.interface";
 
 export interface User{
     id?: number;
@@ -11,11 +11,4 @@ export interface User{
     createdOn?:string;
     lastUpdatedOn?:string;
     roles?:Rol[];
-}
-
-export interface UserResponse{
-    status?:string;
-    msg:string;
-    code:number;
-    redirect:string;
 }

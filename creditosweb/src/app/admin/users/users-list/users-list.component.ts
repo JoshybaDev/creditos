@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgFor, NgIf} from '@angular/common';
+import {JsonPipe, NgFor, NgIf} from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { UserDelModalComponent } from '@modals/user-del-modal/user-del-modal.component';
@@ -12,7 +12,7 @@ import { User } from '@interfaces/user.interface';
 @Component({
   selector: 'app-users-list',
   standalone: true,
-  imports: [NgFor,RouterLink,UserDelModalComponent,NgIf],
+  imports: [NgFor,RouterLink,UserDelModalComponent,NgIf,JsonPipe],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.css'
 })

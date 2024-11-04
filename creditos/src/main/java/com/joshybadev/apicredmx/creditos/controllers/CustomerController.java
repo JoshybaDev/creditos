@@ -12,6 +12,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,10 +30,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
-
+    
     @Autowired
     private ICustomerService customerService;
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         Optional<Customer> userOptional = customerService.findById(id);
@@ -48,12 +49,13 @@ public class CustomerController {
                     .email(customer.getEmail())
                     .phone(customer.getPhone())
                     .active(customer.getActive())
+                    .createdOn(customer.getCreatedOn())
                     .build();
             return ResponseEntity.ok(userDTO);
         }
         return ResponseEntity.notFound().build();
     }
-
+    
     @GetMapping
     public ResponseEntity<?> findAll() {
         List<CustomerDTO> userList = customerService.findAll()
@@ -63,6 +65,7 @@ public class CustomerController {
                 .name(customer.getName())
                 .lastName(customer.getLastName())
                 .tradeName(customer.getTradeName())
+                .createdOn(customer.getCreatedOn())
                 .type(customer.getType())
                 .rfc(customer.getRfc())
                 .email(customer.getEmail())
@@ -71,13 +74,13 @@ public class CustomerController {
                 .build()).toList();
         return ResponseEntity.ok(userList);
     }
-
+    
     @GetMapping("/count")
     public ResponseEntity<?> count() {
         Long count = customerService.count();
         return ResponseEntity.ok(count);
     }
-
+    
     @PostMapping
     public ResponseEntity<?> save(@RequestBody CustomerDTO customerDTO) {
         try {
@@ -93,22 +96,29 @@ public class CustomerController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Parametros inválidos");
         }
-
+        
         Customer customer = Customer.builder()
-                .name(customerDTO.getName())
-                .lastName(customerDTO.getLastName())
-                .tradeName(customerDTO.getTradeName())
+                .name(customerDTO.getName().toUpperCase())
+                .lastName(customerDTO.getLastName().toUpperCase())
+                .tradeName(customerDTO.getTradeName().toUpperCase())
                 .type(customerDTO.getType())
-                .rfc(customerDTO.getRfc())
+                .rfc(customerDTO.getRfc().toUpperCase())
                 .email(customerDTO.getEmail())
                 .phone(customerDTO.getPhone())
                 .active(Boolean.TRUE)
                 .build();
-
+        
         Customer xCustomer = customerService.save(customer);
-        return ResponseEntity.created(URI.create("/customers/" + xCustomer.getId())).build();
+        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(
+                ResponseDTO.builder()
+                        .msg("Cliente Guardado correctamente")
+                        .code(201)
+                        .redirect("dashboard/customers")
+                        .status("ok").build()
+        );
+        //return ResponseEntity.created(URI.create("/customers/" + xCustomer.getId())).build();
     }
-
+    
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
         Optional<Customer> customerOptional = customerService.findById(id);
@@ -144,7 +154,7 @@ public class CustomerController {
         }
         return ResponseEntity.notFound().build();
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id) {
         if (id != null) {

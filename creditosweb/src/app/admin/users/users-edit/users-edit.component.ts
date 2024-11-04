@@ -2,12 +2,14 @@ import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { UsersService } from '../../../core/services/users.service';
-import { RolesService } from '../../../core/services/roles.service';
-import { ActivatedRoute, Router, UrlTree } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
-import { User, UserResponse } from '../../../core/interfaces/user.interface';
-import { Rol } from '../../../core/interfaces/role.interface';
+
+import { UsersService } from '@services/users.service';
+import { RolesService } from '@services/roles.service';
+import { User } from '@interfaces/user.interface';
+import { Response } from '@interfaces/response.interface';
+import { Rol } from '@interfaces/rol.interface';
 
 @Component({
   selector: 'app-users-edit',
@@ -28,9 +30,9 @@ export class UsersEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersService.getUserById(this.id).subscribe(user => {
-      this.user = user
+      this.user = user;
       this.rolesService.getRoles().subscribe(roles => {
-        this.roles = roles
+        this.roles = roles;
         this.email?.disable();
         this.formUserUpdateData.setValue({
           email: this.user?.username ?? "",
@@ -41,7 +43,6 @@ export class UsersEditComponent implements OnInit {
       });
     });
   }
-  private urlTree: UrlTree;
   private id: number;
   public roles: Rol[];
   public user: User;
@@ -84,7 +85,7 @@ export class UsersEditComponent implements OnInit {
         id: this.id,
         iperfil: this.iperfil,
       }).subscribe({
-        next: (response: UserResponse) => {
+        next: (response: Response) => {
           this.mensajeShowStatus = true
           this.mensajeShowData = this.mensajeSuccesError(response.msg);
           setTimeout(() => { this.mensajeShowStatus = false }, 3000);
@@ -102,7 +103,7 @@ export class UsersEditComponent implements OnInit {
         name: this.formUserUpdateData.get('name').value || '',
         roles: this.formUserUpdateData.get('roles').value || []
       }).subscribe({
-        next: (response: UserResponse) => {
+        next: (response: Response) => {
           this.mensajeShowStatus = true
           this.mensajeShowData = this.mensajeSuccesError(response.msg);
           setTimeout(() => { this.mensajeShowStatus = false }, 3000);
@@ -130,7 +131,7 @@ export class UsersEditComponent implements OnInit {
         password: this.formUserUpdatePass.get('password').value.toString() || '',
         password2: this.formUserUpdatePass.get('password2').value.toString() || '',
       }).subscribe({
-        next: (response: UserResponse) => {
+        next: (response: Response) => {
           if (response.code == 200) {
             this.mensajeShowStatus2 = true
             this.mensajeShowData2 = this.mensajeSuccesError(response.msg, true);

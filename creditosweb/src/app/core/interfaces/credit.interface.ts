@@ -1,3 +1,5 @@
+import { Customer } from "./customer.interface";
+
 export interface Credits{
     id?: number;
     createdOn?:string;
@@ -11,4 +13,5 @@ export interface Credits{
     periodo?:string;
     numcuotas?:number;
     plazomensual?:number;
+    customer:Customer
 }

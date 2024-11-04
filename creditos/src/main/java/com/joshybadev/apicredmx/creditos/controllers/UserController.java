@@ -11,6 +11,7 @@ import com.joshybadev.apicredmx.creditos.service.IUserService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -115,12 +116,13 @@ public class UserController {
                 .roles(userDTO.getRoles())
                 .build();
         User userSaved = userService.save(user);
-        long users_id = userSaved.getId();
-        return ResponseEntity.ok(
+        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(
                 ResponseDTO.builder()
-                        .msg("dashboard/users" + users_id)
+                        .msg("Usuario Guardado correctamente")
                         .code(201)
-                        .status("ok").build());
+                        .redirect("dashboard/users")
+                        .status("ok").build()
+        );        
     }
 
     @PutMapping("/{id}")

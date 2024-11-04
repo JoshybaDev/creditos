@@ -1,4 +1,4 @@
-import { Rol } from "./role.interface";
+import { Rol } from "./rol.interface";
 
 export interface LoginResponse{
     accessToken:string;

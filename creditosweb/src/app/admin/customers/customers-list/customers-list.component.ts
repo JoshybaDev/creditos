@@ -18,7 +18,8 @@ export class CustomersListComponent implements OnInit {
 
   public customers: Customer[] = [];
 
-  constructor(private readonly customersService: CustomersService, private readonly authSetvice: AuthService) {
+  constructor(private readonly customersService: CustomersService,
+     private readonly authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -34,6 +35,6 @@ export class CustomersListComponent implements OnInit {
   }
 
   getEsAdmin() {
-    return this.authSetvice.getEsAdmin();
+    return this.authService.getEsAdmin();
   }
 }

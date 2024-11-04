@@ -16,6 +16,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,7 +81,7 @@ public class CreditController {
                 .periodo(credit.getPeriodo())
                 .numcuotas(credit.getNumcuotas())
                 .plazomensual(credit.getPlazomensual())
-                //.customer(credit.getCustomer())
+                .customer(credit.getCustomer())
                 .build()).toList();
         return ResponseEntity.ok(userList);
     }
@@ -123,12 +124,25 @@ public class CreditController {
                 .plazomensual(creditDTO.getPlazomensual())
                 .calculoTipo("SI")
                 .status("Creado")
-                //.customer(creditDTO.getCustomer())
+                .customer(creditDTO.getCustomer())
                 .build();
 
         Credit xCredit = creditService.save(credit);
-        return ResponseEntity.created(URI.create("/credits/" + xCredit.getId())).build();
+        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(
+                ResponseDTO.builder()
+                        .msg("Usuario Guardado correctamente")
+                        .code(201)
+                        .redirect("dashboard/credits")
+                        .status("ok").build()
+        );    
+        //return ResponseEntity.created(URI.create("/credits/" + xCredit.getId())).build();
     }
+    
+    @GetMapping("/count")
+    public ResponseEntity<?> count() {
+        Long count = creditService.count();
+        return ResponseEntity.ok(count);
+    }    
 
     @PutMapping("/autorizar/{id}")
     public ResponseEntity<?> AutorizationCredit(@PathVariable Long id) {

@@ -24,7 +24,7 @@
                         <td>{{user.username}}</td>
                         <td><img src="{{user.iperfil}}" height="64px" class="img-profile rounded-circle" alt="perfil"></td>
                         <td>{{user.createdOn}}</td>
-                        <td>{{user.roles}}</td>
+                        <td>{{user.roles | json}}</td>
                         <td *ngIf="getEsAdmin()">
                             <a class="btn btn-warning btn-circle" [routerLink]="['/dashboard/users/edit',user.id]"><i
                                     class="fas fa-edit "></i></a>

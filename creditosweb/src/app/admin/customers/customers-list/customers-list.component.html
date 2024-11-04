@@ -18,14 +18,14 @@
                         <th *ngIf="getEsAdmin()">Opciones</th>
                     </tr>
                     <tr *ngFor="let customer of customers">
-                        <td>{{ customer.tradeName ?? customer.name}}</td>
+                        <td>{{ customer.tradeName || customer.name + " " + customer.lastName}}</td>
                         <td>{{customer.email}}</td>
                         <td>{{customer.createdOn}}</td>
                         <td *ngIf="getEsAdmin()">
                             <a class="btn btn-warning btn-circle" [routerLink]="['/dashboard/customers/edit',customer.id]"><i
                                     class="fas fa-edit "></i></a>
                             <a class="btn btn-danger btn-circle" href="#" data-toggle="modal"
-                                data-target="#ModalDelCustomer" (click)="SetSelectemItem(customer.id,customer.tradeName ?? customer.name)">
+                                data-target="#ModalDelCustomer" (click)="SetSelectemItem(customer.id,customer.tradeName || customer.name + ' ' + customer.lastName )">
                                 <i class="fas fa-trash"></i>
                             </a>
 

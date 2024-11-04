@@ -1,0 +1,44 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Creditos</h1>
+    <div *ngIf="getEsAdmin()">
+        <!-- <a [routerLink]="['/dashboard/credits/new']" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+                class="fas fa-user fa-sm text-white-50"></i> Nuevo</a> -->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered table-hover round text-center">
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Creado</th>
+                        <th>Monto</th>
+                        <th>Total de Cuotas</th>
+                        <th>plazo</th>
+                        <th>% Interes</th>
+                        <th *ngIf="getEsAdmin()">Opciones</th>
+                    </tr>
+                    <tr *ngFor="let credit of credits">
+                        <td>{{credit.customer.tradeName || credit.customer.name + " " + credit.customer.lastName}}</td>
+                        <td>{{credit.createdOn}}</td>
+                        <td>{{credit.mount | currency}}</td>
+                        <td>{{credit.numcuotas}}</td>
+                        <td>{{credit.plazomensual}}</td>
+                        <td>{{credit.percentej_inte}}</td>
+                        <td *ngIf="getEsAdmin()">
+                            <!-- <a class="btn btn-warning btn-circle" [routerLink]="['/dashboard/credits/edit',credit.id]"><i
+                                    class="fas fa-edit "></i></a>
+                            <a class="btn btn-danger btn-circle" href="#" data-toggle="modal"
+                                data-target="#ModalDelCustomer" (click)="SetSelectemItem(customer.id,customer.tradeName || customer.name + ' ' + customer.lastName )">
+                                <i class="fas fa-trash"></i>
+                            </a> -->
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-customer-del-modal [id]="idSelected" [customer]="nombreSelected"></app-customer-del-modal> -->

@@ -1,3 +1,4 @@
+
 package com.joshybadev.apicredmx.creditos.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -15,6 +16,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +44,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @NoArgsConstructor
 @Entity
 @Table(name = "credits")
-public class Credit {
+public class Credit implements Serializable  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,7 +70,6 @@ public class Credit {
     @Column(length = 4)
     private String calculoTipo;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
