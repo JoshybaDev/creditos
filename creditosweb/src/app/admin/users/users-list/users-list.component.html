@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body overflow-auto">
                 <table class="table table-bordered table-hover round text-center">
                     <tr>
                         <th>Nombre</th>
@@ -27,10 +27,10 @@
                         <td>{{user.roles | json}}</td>
                         <td *ngIf="getEsAdmin()">
                             <a class="btn btn-warning btn-circle" [routerLink]="['/dashboard/users/edit',user.id]"><i
-                                    class="fas fa-edit "></i></a>
+                                    class="fas fa-edit" title="Editar"></i></a>
                             <a class="btn btn-danger btn-circle" href="#" data-toggle="modal"
                                 data-target="#ModalDelUser" (click)="SetSelectemItem(user.id,user.name)">
-                                <i class="fas fa-trash"></i>
+                                <i class="fas fa-trash" title="Eliminar"></i>
                             </a>
 
 

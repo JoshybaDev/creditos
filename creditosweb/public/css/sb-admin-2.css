@@ -10096,6 +10096,10 @@ a:focus {
   border-left: 0.25rem solid #36b9cc !important;
 }
 
+.border-left-info:hover {
+  border-left: 0.25rem solid #858796 !important;
+}
+
 .border-bottom-info {
   border-bottom: 0.25rem solid #36b9cc !important;
 }
